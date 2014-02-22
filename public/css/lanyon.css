@@ -76,7 +76,7 @@ h1, h2, h3, h4, h5, h6 {
 .container{
   max-width: 28rem;
 }
-.img{
+img{
   max-width: 22rem;
   margin: 1rem auto;
 }
@@ -84,7 +84,7 @@ h1, h2, h3, h4, h5, h6 {
   .container{
     max-width: 32rem;
   }
-  .img{
+  img{
     max-width: 25rem;
     margin: 2rem auto;
   }
@@ -93,7 +93,7 @@ h1, h2, h3, h4, h5, h6 {
   .container{
     max-width: 38rem;
   }
-  .img{
+  img{
     max-width: 30rem;
     margin: 3rem auto;
   }
