@@ -6,13 +6,14 @@ pygments:         true
 permalink:        pretty
 
 # Setup
-title:            'MForever78'
+
+title:            MForever78
 tagline:          'Code Blog'
 description:      'Code about everything. Everything about code.'
 url:              http://MForever78.github.io
 
-author:
-  name:           'MForever78'
+author:           'MForever78'
+  name:           'Code Blog'
   url:            https://MForever78.com
 
 paginate:         5
@@ -20,5 +21,5 @@ paginate:         5
 # Custom vars
 version:          2.0.0
 
-github:           https://github.com/MForever78
+github:
   repo:           https://github.com/MForever78/MForever78.github.io
