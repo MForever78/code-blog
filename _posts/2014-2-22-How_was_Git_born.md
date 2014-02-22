@@ -5,6 +5,8 @@ category: Story
 tag: git history
 ---
 
+![Git](http://mforever78.qiniudn.com/git_logo.png "Git logo")
+
 你可能有过这样的经历：在 debug 的时候这里加一句，那里减一句，顺便改改参数，不一会你的程序就从一个 bug 增加到了无数个 bug 。最重要的是，你完全想不起来自己到底改了几个地方，原来的程序到底长什么样子了。经历过几次这样的痛苦，你学乖了，下次 debug 之前先把原文件备份一下——改成 program.c.bak 什么的，然后放开了胆子改。有时候修改的次数多了，就会出现 program_v1.c.bak， program_v2.c.bak …… 又有时候需要同时修改多个文件。而需要倒回到之前的版本的时候，又完全想不起来这些 v1, v2 到底改了哪些地方。坑爹呐！难道要老子手工查不成？难道老子还要给每个 version 写个描述文件？
 
 程序员们应该都中枪了。
