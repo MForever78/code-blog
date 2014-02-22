@@ -6,7 +6,7 @@ pygments:         true
 permalink:        pretty
 
 # Setup
-title:            MForever78
+title:            'MForever78'
 tagline:          'Code Blog'
 description:      'Code about everything. Everything about code.'
 url:              http://MForever78.github.io
