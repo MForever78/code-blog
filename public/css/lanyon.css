@@ -67,22 +67,35 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /*
- * Container
+ * Container&images
  *
- * Center the page content.
+ * Center the page content and images.
+ * Make the page and images responsive.
  */
 
-.container, img {
+.container{
   max-width: 28rem;
 }
+.img{
+  max-width: 22rem;
+  margin: 1rem auto;
+}
 @media (min-width: 38rem) {
-  .container, img {
+  .container{
     max-width: 32rem;
+  }
+  .img{
+    max-width: 25rem;
+    margin: 2rem auto;
   }
 }
 @media (min-width: 56rem) {
-  .container, img {
+  .container{
     max-width: 38rem;
+  }
+  .img{
+    max-width: 30rem;
+    margin: 3rem auto;
   }
 }
 
