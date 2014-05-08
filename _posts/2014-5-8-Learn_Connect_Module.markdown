@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title: Connect Module 学习笔记
 category: Nodejs
 tag: nodejs
