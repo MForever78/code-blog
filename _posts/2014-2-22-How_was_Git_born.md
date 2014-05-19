@@ -1,8 +1,8 @@
 ---
 layout: post
+comments: true
 title: Git 诞生记
 category: Story
-comments: true
 tag: git history
 ---
 
