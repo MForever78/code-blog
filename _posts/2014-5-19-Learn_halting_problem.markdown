@@ -16,25 +16,28 @@ tag: feynman
 
 要解决这个问题，我们先假设存在一个程序满足上述条件，比如：
 
-```
+```C
 int yourBrilliantProgram(char * program, inputType  input){
 	if (program(input) stops)
 		return 1;
 	else //It loops forever
-		return 0;}
+		return 0;
+}
 ```
 
 其中，第一个 `if` 语句中的判断是人类智慧的结晶，它用了神奇的方法得知了 `program(input)` 是否停止。
 
 接着我们就要进行破坏了，再来考虑这样一个程序：
 
-```
+```C
 int myDisgustingProgram(char * program){
 	if (yourBrilliantProgram(program, program)){
 		while(1);
-		return 0; //Never reaches here	}
+		return 0; //Never reaches here
+	}
 	else
-		return 1;}
+		return 1;
+}
 ```
 
 我的程序专门跟你作对，如果你说这个程序可以正常退出，那么我就作一个死循环；你说它是死循环的，我就正常退出给你返回一个`true`。
