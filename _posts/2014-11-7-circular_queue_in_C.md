@@ -6,6 +6,8 @@ category: Notes
 tag: C datastructure queue
 ---
 
+![Circular-array](http://mforever78.qiniudn.com/circular-array.png "Circular Array")
+
 前两天写了这学期 Foundamentals of Data Structures 课里最后一个 Project 的程序。题目的难点本来在于思路，可是老师上课已经提醒了很多，于是编程上并没有太大困难。布置下来以后我花了两个小时的时间，把整个程序写完，通过了 PAT 上的测试，把程序交给小组的测试员，又和文档员说了一下这个题的思路，觉得自己已经 Mission Acomplish 了。
 
 昨天测试员回复我说有一个数据通不过，程序陷入了死循环。我的第一反应就是她给的数据有问题。因为这妹子懒得写程序，数据竟然是手算出来的。我看到 N = 50 觉得她肯定出错了。不过为了放心，还是不耐烦地自己写了一个数据生成器，对比之后发现，程序真的错了。
