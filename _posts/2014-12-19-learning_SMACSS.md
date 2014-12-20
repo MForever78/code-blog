@@ -6,7 +6,91 @@ category: Notes
 tag: front-end css
 ---
 
-写出可用的 CSS 并不难，但是写出可维护的 CSS 一直是我在考虑的一个问题。如何让一个团队写出来的 CSS 像是同一个人写出来的，在这点上，Google CSS style guide 看起来规定得太少。这时候 CSS 模式便被提出，本文就是我在学习 SMACSS( Scalable and Modular Architecture for CSS ) 时候的笔记。
+写出可用的 CSS 并不难，但是写出可维护的 CSS 一直是我在考虑的一个问题。如何让一个团队写出来的 CSS 像是同一个人写出来的，在这点上，Google CSS style guide 规定得太少。而 CSS 模式可以解决这种问题，本文就是我在学习 SMACSS( Scalable and Modular Architecture for CSS ) 时候的笔记。
+
+## 理想中的 CSS 模式
+
+先有一个直观的感受，什么才是可维护的 CSS
+
+```css
+/* Base */
+body, form {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: #039;
+}
+
+a:hover {
+    color: #03F;
+}
+
+/* Layout */
+
+.l-fixed {
+    width: 960px;
+    margin: auto;
+}
+
+.l-content {
+    width: 200px;
+    float: left;
+}
+
+.l-sidebar {
+    width: 740px;
+    float: left;
+    margin-left: 20px;
+}
+
+/* Module */
+
+.menu-horizontal > li {
+    display: inline-block;
+}
+
+.menu-items {
+    list-style: none;
+}
+
+.menu-items > .is-active {
+    text-decoration: underline;
+}
+
+.menu-featuredItems {
+    padding-left: 20px;
+}
+
+.menu-header {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Status */
+
+.is-hidden {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+.pull-left {
+    float: left
+}
+
+.pull-right {
+    float: right
+}
+
+.clearfix:after {
+    content: " ";
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+}
+```
 
 ## CSS 的目录划分
 
@@ -132,7 +216,8 @@ tag: front-end css
             setTimeout(function(){
                 el.className = 'is-removed';
             }, 2000);
-    }, 3000); }
+        }, 3000);
+    }
     ```
 2. 伪类
     - 注：可通过伪类的变化来改变元素的兄弟（siblings）和后代。要想改变其他，还得使用 JavaScript
@@ -173,4 +258,5 @@ tag: front-end css
 ## 选择器的深度（Depth）
 
 - CSS 不应依赖与 HTML 的结构；被选择的 HTML 元素位置不应太深。一个反例：`body.article > #main > #content > #intro > p > b `
+- 当层级过深时，应该把相同属性抽象出来，成为一个 module 或 sub-class 
 
