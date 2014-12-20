@@ -21,6 +21,7 @@ tag: front-end css
     - 注意：避免使用 ID 选择器
     - 使用语义化的类名，如 `.fld-name`、`fld-items`；避免使用元素选择器
     - 同一 module 在不同情景下的表现区分，可用 sub-class 的方式来实现。如：
+
 ```css
 .pod {
     width: 100%;
@@ -32,6 +33,7 @@ tag: front-end css
     width: 100%;
 }
 ```
+
     - 需要考虑 specificity 的时候，可以将类名叠加起来，如 `.pod.pod-callout`
 4. State
     - 基本概念：规定指定 module 和 layout 在特定状态下的样式
