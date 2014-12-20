@@ -6,6 +6,8 @@ category: Notes
 tag: front-end css
 ---
 
+写出可用的 CSS 并不难，但是写出可维护的 CSS 一直是我在考虑的一个问题。如何让一个团队写出来的 CSS 像是同一个人写出来的，在这点上，Google CSS style guide 看起来规定得太少。这时候 CSS 模式便被提出，本文就是我在学习 SMACSS( Scalable and Modular Architecture for CSS ) 时候的笔记。
+
 ## CSS 的目录划分
 
 1. Base
