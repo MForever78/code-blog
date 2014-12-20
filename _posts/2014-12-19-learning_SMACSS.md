@@ -22,17 +22,17 @@ tag: front-end css
     - 使用语义化的类名，如 `.fld-name`、`fld-items`；避免使用元素选择器
     - 同一 module 在不同情景下的表现区分，可用 sub-class 的方式来实现。如：
 
-        ```css
-        .pod {
-            width: 100%;
-        }
-        .pod input[type=text] {
-            width: 50%;
-        }
-        .pod-constrained input[type=text] {
-            width: 100%;
-        }
-        ```
+    ```css
+    .pod {
+        width: 100%;
+    }
+    .pod input[type=text] {
+        width: 50%;
+    }
+    .pod-constrained input[type=text] {
+        width: 100%;
+    }
+    ```
     - 需要考虑 specificity 的时候，可以将类名叠加起来，如 `.pod.pod-callout`
 4. State
     - 基本概念：规定指定 module 和 layout 在特定状态下的样式
@@ -56,12 +56,119 @@ tag: front-end css
 
 ## 状态变化
 
-一般来讲，有三种状态可能出现变化：
+一般来讲，元素样式变化可通过三种状态变化进行：
 
-1. 类名
+1. 类
     - 一般通过 JavaScript 根据用户行为来变化
+    - 可通过给指定元素加减 State 类使其变化
+    - 对于子菜单，可用兄弟选择器来实现，会使动作更易扩展，对其他的元素影响更小，如：
+
+    ```html
+    <div id="content">
+        <div class="toolbar">
+            <button id="btn-new" class="btn is-active" data-action="menu">New</button>
+            <div id="menu-new" class="menu">
+                <ul> ... </ul>
+            </div>
+        </div>
+    </div>
+    ```
+
+    ```css
+    /* CSS for styling */
+    .btn.is-active { color: #000; }
+    .btn.is-active + .menu { display: block; }
+    ```
+    - 用属性选择器实现状态变化，如：
+
+    ```css
+    .btn[data-state=default] { color: #333; }
+    .btn[data-state=pressed] { color: #000; }
+    .btn[data-state=disabled] { opacity: .5; pointer-events: none; }
+    ```
+
+    ```html
+    <button class="btn" data-state="disabled">Disabled</button>
+    ```
+
+    ```javascript
+    // bind a click handler to each button
+    $(".btn").bind("click", function(){
+        // change the state to pressed
+        $(this).attr('data-state', 'pressed');
+    });
+    ```
+    - JavaScript 负责行为，可以描述状态变化，不应该用来添加内联样式（inline styles）；CSS 负责表现。两者配合实现动画：
+
+    ```css
+    @-webkit-keyframes fade {
+        0% { opacity:0;  }
+      100% { opacity:1; display:block; }
+    }
+    .is-visible {
+        opacity: 1;
+        animation: fade 2s;
+    }
+    .is-hidden {
+        opacity: 0;
+        animation: fade 2s reverse;
+    }
+    .is-removed {
+        display: none;
+    }
+    ```
+
+    ```javascript
+    function showMessage (s) {
+        var el = document.getElementById('message');
+        el.innerHTML = s;
+        /* set state */
+        el.className = 'is-visible';
+        setTimeout(function(){
+            /* set state back */
+            el.className = 'is-hidden';
+            setTimeout(function(){
+                el.className = 'is-removed';
+            }, 2000);
+    }, 3000); }
+    ```
 2. 伪类
     - 注：可通过伪类的变化来改变元素的兄弟（siblings）和后代。要想改变其他，还得使用 JavaScript
+    - 使用了 sub-class 以后也要加上相应的伪类
 3. 媒体查询（media query）
+    - 使用响应式设计的时候，在每个的 module 下立刻写出对应的 media query，保证 module 的集中，如：
 
+    ```css
+    /* default state for nav items */
+    .nav > li {
+        float: left;
+    }
+    /* alternate state for nav items on small screens */
+    @media screen and (max-width: 400px) {
+        .nav > li {
+            float: none;
+        }
+    }
+    ... elsewhere for layout ...
+    /* default layout */
+    .content {
+        float: left;
+        width: 75%;
+    }
+    .sidebar {
+        float: right;
+        width: 25%;
+    }
+    /* alternate state for layout on small screens */
+    @media screen and (max-width: 400px) {
+        .content, .sidebar {
+            float: none;
+            width: auto;
+        }
+    }
+    ```
+
+## 选择器的深度（Depth）
+
+- CSS 不应依赖与 HTML 的结构；被选择的 HTML 元素位置不应太深。一个反例：`body.article > #main > #content > #intro > p > b `
 
