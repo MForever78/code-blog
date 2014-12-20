@@ -3,3 +3,6 @@
 
 # Vim
 *.swp
+
+# Jekyll
+_site/
