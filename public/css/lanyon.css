@@ -41,7 +41,7 @@ body {
 }
 
 html {
-    font-family: "PT Serif", Georgia, "Times New Roman", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", serif;
+    font-family: "PT Serif", Georgia, "Times New Roman", "Lantinghei SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -310,6 +310,7 @@ a.sidebar-nav-item:focus {
 .page,
 .post {
   margin-bottom: 4em;
+  line-height: 2;
 }
 
 /* Blog post or page title */
