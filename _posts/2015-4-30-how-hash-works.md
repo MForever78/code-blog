@@ -22,9 +22,9 @@ tag: secure salt web password
 
 ## Rainbow Table
 
-可是真的是这样吗？一定程度上说是的，别人得到 hash 之后，的确几乎不可能逆向算出原始密码。但换个思路想一想，用户的密码通常是简单并且容易构造的，只要把这些常见的密码 hash 一下得到这个对应关系表，就很容易得到原始密码了。这样的对应关系表通常被称为彩虹表[1]（Rainbow Table)。
+可是真的是这样吗？一定程度上说是的，别人得到 hash 之后，的确几乎不可能逆向算出原始密码。但换个思路想一想，用户的密码通常是简单并且容易构造的，只要把这些常见的密码 hash 一下得到这个对应关系表，就很容易得到原始密码了。这样的对应关系表通常被称为彩虹表[^1]（Rainbow Table)。
 
-现在黑客们已经构造出 TB 级别的彩虹表[2]，所以很多直接 hash 得来的密码都会被直接查询到。
+现在黑客们已经构造出 TB 级别的彩虹表[^2]，所以很多直接 hash 得来的密码都会被直接查询到。
 
 ## Salt
 
@@ -77,7 +77,7 @@ $$
 
 如果我们按照上面的策略存储密码了，可以暂时认为数据库方面是安全的了。如果要想窃取用户的密码，就应该从更薄弱的环节入手，比如网络传输。现在仍然有大量的网站没有使用 HTTPS 传输数据，这意味着用户发送的数据可能在经过的每一个路由节点上被监听到。所以还没等服务器拿到用户的密码原文，中间人已经获取到所有想要的信息了。
 
-这时候怎么办呢？最好的解决办法就是换成 HTTPS，从根本上避免这种监听。但如果做不到，我们可以退而求其次想一些折衷的办法。
+这时候怎么办呢？最好的解决办法就是换成 HTTPS，从根本上避免这种监听。但如果做不到，我们可以退而求其次想一些折衷的办法[^3]。
 
 策略一，前端直接 hash 密码送到后端进行加盐 hash。不可行。因为如果有人从别处已经得到了一些 hash 后的值，那么他就不需要猜测用户原来的密码，直接把 hash 送到后端进行验证就行了，反而降低了难度。
 
@@ -98,8 +98,8 @@ $$
 - 使用安全的 hash 函数
 - 如果可能，使用 HTTPS
 
-### 参考资料
+## 参考资料
 
-1. [Rainbow Table](http://en.wikipedia.org/wiki/Rainbow_table)
-2. [Rainbow Crack](http://project-rainbowcrack.com/table.htm)
-3. [Salted Password Hashing - Doing it Right](https://crackstation.net/hashing-security.htm)
+[^1]: [Rainbow Table](http://en.wikipedia.org/wiki/Rainbow_table)
+[^2]: [Rainbow Crack](http://project-rainbowcrack.com/table.htm)
+[^3]: [Salted Password Hashing - Doing it Right](https://crackstation.net/hashing-security.htm)
