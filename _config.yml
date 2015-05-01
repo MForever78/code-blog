@@ -2,7 +2,7 @@
 markdown:         kramdown
 kramdown:
   input: GFM
-  syntax_highlighter: pygments
+  syntax_highlighter: rouge
 
 # Permalinks
 permalink:        pretty
