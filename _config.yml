@@ -1,9 +1,8 @@
 # Markdown
 markdown:         kramdown
-highlighter:      rouge
 kramdown:
   input: GFM
-  syntax_highlighter: rouge
+  syntax_highlighter: pygments
 
 # Permalinks
 permalink:        pretty
