@@ -16,7 +16,7 @@ tag: feynman
 
 要解决这个问题，我们先假设存在一个程序满足上述条件，比如：
 
-```C
+``` c
 int yourBrilliantProgram(char * program, inputType  input){
 	if (program(input) stops)
 		return 1;
@@ -29,7 +29,7 @@ int yourBrilliantProgram(char * program, inputType  input){
 
 接着我们就要进行破坏了，再来考虑这样一个程序：
 
-```C
+``` c
 int myDisgustingProgram(char * program){
 	if (yourBrilliantProgram(program, program)){
 		while(1);

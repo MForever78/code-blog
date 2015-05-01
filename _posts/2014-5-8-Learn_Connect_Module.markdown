@@ -23,7 +23,7 @@ tag: nodejs
 npm install connect
 ```
 
-调用 Connect：	
+调用 Connect：
 
 ```js
 var connect = require("connect");
@@ -53,7 +53,7 @@ connect()
 .use(function (req, res, next) {
 	// do something
 })
-```	
+```
 其中 `req` 和 `res` 分别是请求和响应对象，而通过调用 `next()` 可以使请求被下一个中间件捕捉到。
 
 **注意**：如果没有对请求作出响应，则必须使用 `next()` 将请求传递至下一个中间件，否则会使页面处于空白无响应状态。
@@ -104,7 +104,7 @@ connect()
         res.write("req.session: " + JSON.stringify(req.session));
         res.end();
     }).listen(3000);
-```   
+```
 没有 Express 这样的框架的支持，不能直接对 `respose` 进行类似于 `render` 这样的操作，必须手动写入所有信息。
 
 首先，使用 `writeHead()` 写入中响应头：
@@ -115,7 +115,7 @@ connect()
         'Content-Length': body.length,
         'Content-Type': 'text/plain'
     });
-``` 
+```
 也可以使用 `setHeader()` 方法进行单项修改：
 
 ```js
@@ -138,4 +138,4 @@ connect()
         res.setHeader("Content-Type", type);
         res.end(body);
     }).listen(3000);
-```   
+```
