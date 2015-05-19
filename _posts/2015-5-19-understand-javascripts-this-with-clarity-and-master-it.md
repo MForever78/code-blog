@@ -1,30 +1,35 @@
 ---
 layout: post
 comments: false
-title: 理解并掌握 JavaScript 中 this 的用法
+title: 译：理解并掌握 JavaScript 中 this 的用法
 category: Notes Translation
 tag: javascript this translation
 ---
 
-> 同时了解那些 this 被误解的场景
+[原文链接](http://javascriptissexy.com/understand-javascripts-this-with-clarity-and-master-it/)
+
+> 按：本文原文来自 Javascript.isSexy 这个网站。这篇文章和文中提到的另一篇文章解决了我一直以来对 `this` 和 `apply, call, bind` 这三个方法的困惑。我看过很多国内相关的技术文章，没有一篇能让我彻底理解这些概念的。因此我决定把它译过来，不要让更多的初学者像我一样在这个问题上纠结太长时间。
+
+> （在学习 this 的同时也了解那些 this 被误解和误用的场景）
 
 预备知识：JavaScript 基础知识
 阅读时间：约 40 分钟
 
-[TOC]
+- Table of content
+{:toc}
 
 在 JavaScript 中，`this` 这个关键字常常困扰着初学者甚至一些进阶的开发者。这篇文章旨在完完全全阐明 `this`。当你读完本文之后，你就再也不会为 `this` 所困惑了。你将会理解 `this` 的各种使用场景，包括那些最难懂的情形。
 
 我们使用 `this` 的方式和在英语或法语中使用代词的方式十分类似。我们会这样写「李华正在飞快地跑着，因为**他**正在赶火车。」注意这里代词「他」的用法。我们也可以这样写：「李华正在飞快地跑着，因为李华正在赶火车。」我们通常不会把「李华」这个名字像这样重复使用，因为这样显得很神经。类似地，在 JavaScript 中，我们使用 `this` 作为一种指代。它指代一个对象（object)，也就是那个上下文中的主语，或者说运行时的主体。考虑下面这个例子：
 
 ```js
- var person = {
+var person = {
     firstName: "Penelope",
     lastName: "Barrymore",
     fullName: function () {
-		// 注意我们使用「this」关键字就像我们在上文中使用「他」一样
+        // 注意我们使用「this」关键字就像我们在上文中使用「他」一样
         console.log(this.firstName + " " + this.lastName);
-		// 我们也可以这样写
+        // 我们也可以这样写
         console.log(person.firstName + " " + person.lastName);
     }
 }
@@ -46,12 +51,12 @@ tag: javascript this translation
 
 ```js
 var person = {
-	firstName: "Penelope",
-	lastName: "Barrymore",
-	// 因为 this 关键字在 showFullName 方法中被用到，而 showFullName 在 person 这个对象中被定义，
-	// 所以 this 将会具有 person 这个对象的值，因为 person 对象将会调用 showFullName()
+    firstName: "Penelope",
+    lastName: "Barrymore",
+    // 因为 this 关键字在 showFullName 方法中被用到，而 showFullName 在 person 这个对象中被定义，
+    // 所以 this 将会具有 person 这个对象的值，因为 person 对象将会调用 showFullName()
     showFullName: function() {
-	    console.log (this.firstName + " " + this.lastName);
+        console.log (this.firstName + " " + this.lastName);
     }
 }
 ​
@@ -66,7 +71,7 @@ person.showFullName(); // Penelope Barrymore
 $ ("button").click (function (event) {
     // $(this) 将具有那个 ($("button")) 按钮对象的值
     // 因为那个按钮对象调用了 click() 方法
-	console.log ($ (this).prop("name"));
+    console.log ($ (this).prop("name"));
 });
 ```
  
@@ -88,11 +93,11 @@ $ ("button").click (function (event) {
 
 ```js
 var firstName = "Peter",
-	lastName = "Ally";
+    lastName = "Ally";
 ​
 function showFullName () {
-	// 在这个函数中，this 将会拥有 window 对象的值
-	// 因为 showFullName() 函数，和 firstName, lastName 一样是定义在全局作用域的
+    // 在这个函数中，this 将会拥有 window 对象的值
+    // 因为 showFullName() 函数，和 firstName, lastName 一样是定义在全局作用域的
     console.log (this.firstName + " " + this.lastName);
 }
 ​
@@ -100,8 +105,8 @@ var person = {
     firstName: "Penelope",
     lastName: "Barrymore",
     showFullName:function () {
-	    // 下面这行中的 this 指代 person 对象，因为 showFullName 这个函数将会被 person 对象调用
-	    console.log (this.firstName + " " + this.lastName);
+        // 下面这行中的 this 指代 person 对象，因为 showFullName 这个函数将会被 person 对象调用
+        console.log (this.firstName + " " + this.lastName);
     }
 }
 ​
@@ -162,16 +167,16 @@ person.showFullName (); // Penelope Barrymore
 ```js
 // 我们有一个简单的对象，它有一个 clickHandler 方法，我们想要使当页面上的一个按钮被点击时它被调用
 var user = {
-	data: [
-		{name: "T. Woods", age: 37},
-		{name: "P. Mickelson", age: 43}
-	],
-	clickHandler: function(event) {
-		var randomNum = ((Math.random() * 2 | 0) + 1) - 1; // 产生 0 到 1 之间的随机数
+    data: [
+        {name: "T. Woods", age: 37},
+        {name: "P. Mickelson", age: 43}
+    ],
+    clickHandler: function(event) {
+        var randomNum = ((Math.random() * 2 | 0) + 1) - 1; // 产生 0 到 1 之间的随机数
 
-		// 下面这行会随机打印出一个 data 数组中的人的姓名和年龄 
-		console.log(this.data[randomNum].name + " " + this.data[randomNum].age);
-	}
+        // 下面这行会随机打印出一个 data 数组中的人的姓名和年龄 
+        console.log(this.data[randomNum].name + " " + this.data[randomNum].age);
+    }
 }
 
 // 这个 button 被 jQuery 的 $ 包装起来了，所以它变成了一个 jQuery 对象
@@ -213,23 +218,23 @@ $("button").click(user.clickHandler.bind(user));
 
 ```js
 var user = {
-	tournament: "The Masters",
-	data: [
-		{name: "T. Woods", age: 37},
-		{name: "P. Mickelson", age: 43}
-	],
+    tournament: "The Masters",
+    data: [
+        {name: "T. Woods", age: 37},
+        {name: "P. Mickelson", age: 43}
+    ],
 
-	clickHandler: function() {
-		// 在这里使用 this.data 是可以的，因为 this 指向 user 对象，而 data 是 user 对象的一个属性
-		this.data.forEach(function(person)) {
-			// 但是在内层匿名函数中（就是我们传给 forEach 方法的函数），this 不再指向 user 对象了
-			// 这个内层函数不能访问外层函数的 this 变量了
-			console.log("What is This referring to? " + this); //[Object Window]
-			console.log(person.name + " is playing at " + this.tournament);
-			// T. Woods is playing at undefined
-			// P. Mickelson is playing at undefined
-		});
-	}
+    clickHandler: function() {
+        // 在这里使用 this.data 是可以的，因为 this 指向 user 对象，而 data 是 user 对象的一个属性
+        this.data.forEach(function(person)) {
+            // 但是在内层匿名函数中（就是我们传给 forEach 方法的函数），this 不再指向 user 对象了
+            // 这个内层函数不能访问外层函数的 this 变量了
+            console.log("What is This referring to? " + this); //[Object Window]
+            console.log(person.name + " is playing at " + this.tournament);
+            // T. Woods is playing at undefined
+            // P. Mickelson is playing at undefined
+        });
+    }
 }
 
 user.clickHandler(); // 现在 this 指向什么？[object Window]
@@ -243,21 +248,21 @@ user.clickHandler(); // 现在 this 指向什么？[object Window]
 
 ```js
 var user = {
-	tournament: "The Masters",
-	data: [
-		{name: "T. Woods", age: 37},
-		{name: "P. Mickelson", age: 43}
-	],
+    tournament: "The Masters",
+    data: [
+        {name: "T. Woods", age: 37},
+        {name: "P. Mickelson", age: 43}
+    ],
 
-	clickHandler: function(event) {
-		// 为了当 this 还指向 user 对象的时候把它的值保存下来，我们把它存到另一个变量中
-		// 我们把 this 保存到 theUserObj 变量中去，这样我们就可以在之后使用了
-		var theUserObj = this;
-		this.data.forEach(function(person) {
-			// 我们将 this.tournament 替换成 theUserObj.tournament
-			console.log(person.name + " is playing at " + theUserObj.tournament);
-		});
-	}
+    clickHandler: function(event) {
+        // 为了当 this 还指向 user 对象的时候把它的值保存下来，我们把它存到另一个变量中
+        // 我们把 this 保存到 theUserObj 变量中去，这样我们就可以在之后使用了
+        var theUserObj = this;
+        this.data.forEach(function(person) {
+            // 我们将 this.tournament 替换成 theUserObj.tournament
+            console.log(person.name + " is playing at " + theUserObj.tournament);
+        });
+    }
 }
 
 user.clickHandler();
@@ -281,22 +286,22 @@ var that = this;
 ```js
 // 这个 data 变量是一个全局变量
 var data = [
-	{name: "Samantha", age: 12},
-	{name: "Alexis", age: 14}
+    {name: "Samantha", age: 12},
+    {name: "Alexis", age: 14}
 ];
 
 var user = {
-	// 这个 data 变量是 user 对象的一个属性
-	data: [
-		{name: "T. Woods", age: 37},
-		{name: "P. Mickelson", age: 43}
-	],
-	showData: function(event) {
-		var randomNum = ((Math.random() * 2 | 0) + 1) - 1; // 0 和 1 之间的随机数
+    // 这个 data 变量是 user 对象的一个属性
+    data: [
+        {name: "T. Woods", age: 37},
+        {name: "P. Mickelson", age: 43}
+    ],
+    showData: function(event) {
+        var randomNum = ((Math.random() * 2 | 0) + 1) - 1; // 0 和 1 之间的随机数
 
-		// 下面这行随机打印一个 data 数组中的人的信息
-		console.log(this.data[randomNum].name + " " + this.data[randomNum].age);
-	}
+        // 下面这行随机打印一个 data 数组中的人的信息
+        console.log(this.data[randomNum].name + " " + this.data[randomNum].age);
+    }
 }
 
 // 把 user.showData 赋值给一个变量
@@ -328,24 +333,24 @@ showUserData(); // P. Mickelson 43
 // 我们有两个对象。其中一个有一个叫做 avg() 的方法，而另一个没有
 // 所以我们想借用一下 (avg()) 这个方法
 var gameController = {
-	scores: [20, 34, 55, 46, 77],
-	avgScore: null,
-	players: [
-		{name: "Tommy", playerID: 987, age: 23},
-		{name: "Pau", playerID: 87, age: 33}
-	]
+    scores: [20, 34, 55, 46, 77],
+    avgScore: null,
+    players: [
+        {name: "Tommy", playerID: 987, age: 23},
+        {name: "Pau", playerID: 87, age: 33}
+    ]
 }
 
 var appController = {
-	scores: [900, 845, 809, 950],
-	avgScore: null,
-	avg: function() {
-		var sumOfScores = this.scores.reduce(function(prev, cur, index, array) {
-			return prev + cur;
-		});
+    scores: [900, 845, 809, 950],
+    avgScore: null,
+    avg: function() {
+        var sumOfScores = this.scores.reduce(function(prev, cur, index, array) {
+            return prev + cur;
+        });
 
-		this.avgScore = sumOfScores / this.scores.length;
-	}
+        this.avgScore = sumOfScores / this.scores.length;
+    }
 }
 
 // 如果我们执行下面的代码，
