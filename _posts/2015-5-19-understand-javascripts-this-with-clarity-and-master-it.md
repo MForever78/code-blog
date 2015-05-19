@@ -1,3 +1,10 @@
+---
+layout: post
+comments: false
+title: 理解并掌握 JavaScript 中 this 的用法
+category: Notes Translation
+tag: javascript this translation
+---
 
 > 同时了解那些 this 被误解的场景
 
