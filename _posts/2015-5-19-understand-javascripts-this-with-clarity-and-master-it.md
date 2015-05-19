@@ -2,7 +2,7 @@
 layout: post
 comments: false
 title: 译：理解并掌握 JavaScript 中 this 的用法
-category: Notes Translation
+category: Translation
 tag: javascript this translation
 ---
 
@@ -282,7 +282,7 @@ var that = this;
 [查看 JSBin 上的在线示例](http://jsbin.com/ibohiw/1/edit)
 
 ### 3. 解决把一个 `this 方法` 赋给一个变量时出现的问题
-
+
 当我们把一个使用了 `this` 的方法赋给一个变量的时候，`this` 的值很可能出乎我们的意料，指向了其他的对象。我们来看一个例子：
 
 ```js

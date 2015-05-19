@@ -13,11 +13,11 @@ relative_permalinks: true
 title:            MForever78
 tagline:          'Code Blog'
 description:      'Code about everything. Everything about code.'
-url:              http://MForever78.github.io
+url:              http://code.mforever78.com
 
 author:
   name:           'Code Blog'
-  url:            https://MForever78.com
+  url:            http://mforever78.com
 
 paginate:         5
 
