@@ -11,4 +11,4 @@ title: About Me
 
 2015 年 4 月实在忍受不了 Github Pages 的 Markdown 解析器，于是把博客迁回自己的服务器了，但保留 Github repo 作为 copy （但是无代码高亮），每次更新同步发送到两个地方。
 
-程序之外，喜欢读书写字。因此我还有一个[个人博客](//blog.mforever78.com)和[文摘库](//digest.mforever78.com)，也欢迎关注。
+程序之外，喜欢读书写字。因此我还有一个[个人博客](//blog.mforever78.com)，也欢迎关注。
