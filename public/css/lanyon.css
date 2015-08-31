@@ -562,3 +562,17 @@ a.pagination-item:hover {
 .layout-reverse.sidebar-overlay #sidebar-checkbox:checked ~ .sidebar {
   box-shadow: -.25rem 0 .5rem rgba(0,0,0,.1);
 }
+
+/* Below is added by MForever78 */
+
+/* License */
+.license {
+    font-size: .9rem;
+    margin-bottom: 1rem;
+}
+.license-item {
+    display: inline-block;
+    width: 2rem;
+    height: auto;
+    margin: 0 .5rem 0 0;
+}
