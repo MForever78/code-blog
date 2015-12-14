@@ -1,7 +1,7 @@
 ---
 layout: post
 comments: false
-title: leetcode 361 解题报告
+title: leetcode 316 解题报告
 category: algorithm
 tag: leetcode algorithm
 ---
