@@ -1,1 +1,2 @@
+git push
 jekyll b && rsync -avz --exclude=*.swp --exclude=update ./_site/ bare.mforever78.com:~/www/code
