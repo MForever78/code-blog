@@ -66,7 +66,7 @@ freeLast = free;
 
 这道题在上题的基础上加了一个 CD 时间的限制。Easy stuff。
 
-状态表示和上题完全一样，不同的是第 `i` 天买入的状态要从第 `i-2` 而不是 `i-1` 天转移而来。即 `hold[i] = max(hold[i-1], free[i-2] - prices[i])`。边界条件为 `hold[0] = -prices[0], hold[1] = max(hold[0], -prices[1]), free[0] = 0, free[1] = max(hold[0] + prices[1], free[0])`。最终结果保存在 `free[n-1` 中。时间和空间复杂度均为 `O(n)`，同理空间复杂度可以优化到 `O(1)`。
+状态表示和上题完全一样，不同的是第 `i` 天买入的状态要从第 `i-2` 而不是 `i-1` 天转移而来。即 `hold[i] = max(hold[i-1], free[i-2] - prices[i])`。边界条件为 `hold[0] = -prices[0], hold[1] = max(hold[0], -prices[1]), free[0] = 0, free[1] = max(hold[0] + prices[1], free[0])`。最终结果保存在 `free[n-1]` 中。时间和空间复杂度均为 `O(n)`，同理空间复杂度可以优化到 `O(1)`。
 
 解决。然而还没完，来看第三版。
 
