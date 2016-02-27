@@ -6,7 +6,7 @@ category: Nodejs
 tag: nodejs
 ---
 
-![Middleware](http://mforever78.qiniudn.com/middleware.jpg "Connect Middleware")
+![Middleware](http://o35qhjvld.qnssl.com/middleware.jpg "Connect Middleware")
 
 ##简介
 

@@ -6,11 +6,11 @@ permalink:        pretty
 title:            MForever78
 tagline:          'Code Blog'
 description:      'Code about everything. Everything about code.'
-url:              http://code.mforever78.com
+url:              https://code.mforever78.com
 
 author:
   name:           'Code Blog'
-  url:            http://mforever78.com
+  url:            https://mforever78.com
 
 gems:             [jekyll-paginate]
 paginate:         5

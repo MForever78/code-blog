@@ -16,7 +16,7 @@ tag: react front-end facebook flux component
 
 我从设计师那里得到的视觉稿是长这样的：
 
-![](//mforever78.qiniudn.com/react-interface-draft.png)
+![](//o35qhjvld.qnssl.com/react-interface-draft.png)
 
 没错它确实是一个网页，看起来设计师希望我们模拟出原生 UI 的感觉。这没什么大惊小怪的，毕竟前端工程师就应该满足设计师各种奇怪的需求嘛。
 
@@ -37,7 +37,7 @@ tag: react front-end facebook flux component
 
 我划分的结果是长这样的：
 
-![](//mforever78.qiniudn.com/react-divide-components.png)
+![](//o35qhjvld.qnssl.com/react-divide-components.png)
 
 组件划分的顺序无外乎自下而上或自顶向下，看个人习惯。我喜欢的方式是后者。
 
@@ -269,6 +269,6 @@ var BusinessComponent = React.createClass({
 
 如果你有兴趣的话，对于我们的项目，完整的组件方案划分是这样的：
 
-![divide](//mforever78.qiniudn.com/react-Webview.png)
+![divide](//o35qhjvld.qnssl.com/react-Webview.png)
 
 我们对性能的要求不高，但是使用 React 的组件管理让项目的可维护性和可扩展性都得到了极大的提高。如果你也受够了前端传统 MVC 的痛苦，不如也来试试 React 和 Flux 吧：）

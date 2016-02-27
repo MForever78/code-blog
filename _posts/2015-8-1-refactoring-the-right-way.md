@@ -22,7 +22,7 @@ tag: javascript front-end refactory ali
 
 生成的签名效果如下图：
 
-![神盾局](//mforever78.qiniudn.com/ued.png)
+![神盾局](//o35qhjvld.qnssl.com/ued.png)
 
 ### 问题分析
 
@@ -89,7 +89,7 @@ if (key === 'name') {
 
 我们重新梳理页面上的信息：
 
-![](//mforever78.qiniudn.com/ued_with_mark.png)
+![](//o35qhjvld.qnssl.com/ued_with_mark.png)
 
 除了背景和头像之外，其他的都可以归结为 `block` ，只不过有一些是多个字段组成的 `block` ，还有些是一个字段独立成 `block` 。因为这些字段间的 CSS 几乎不可重用，我们干脆直接给他们分别指定各自的内联样式。这样，我们只要在每个 `block` 的配置项中写好内容、偏移、样式等信息，就可以交给逻辑层去生成了。
 
@@ -215,7 +215,7 @@ if (block.events) {
 
 对于字体文件过大导致的页面加载慢的问题，我们很自然地想到「异步按需加载」的解决方案，即用哪个载哪个。但具体的实现，我们需要把完整的页面加载逻辑梳理清楚。
 
-![flowchart](//mforever78.qiniudn.com/flowchart.png)
+![flowchart](//o35qhjvld.qnssl.com/flowchart.png)
 
 逻辑搞清楚后，代码就很容易实现了。至此，我们的重构基本上完成，很好地解决了上面提出的四个问题。
 

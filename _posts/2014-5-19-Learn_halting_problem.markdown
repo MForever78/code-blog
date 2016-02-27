@@ -6,7 +6,7 @@ category: Notes
 tag: feynman
 ---
 
-![Turing Machine](http://mforever78.qiniudn.com/turing_machine.jpg)
+![Turing Machine](http://o35qhjvld.qnssl.com/turing_machine.jpg)
 
 前段时间看到 Scott H Young 那篇介绍费曼技巧[^1]的文章，一下想到了程序员界流传甚广的小黄鸭调试法（Rubber Duck Debugging）[^2]。几天前晚上散步的时候，聊天儿时提起了罗素悖论，让我联想到图灵对停机问题精妙的解法。想拿这个试试费曼技巧，讲到一半发现卡壳了，自己把自己绕了进去。我想到刘未鹏说过的那种状态，学习一个算法，初看觉得太牛逼了，然后花十分钟理解了人家花了十年才想出的成果，再花十天完全忘记，只能想起那个算法十分精妙，该不会的还是不会。所以应该由本溯源地学习数学和算法，并且写一个博客记录下学习的过程。于是这篇就作为费曼技巧和写作学习实践的第一篇。
 
