@@ -11,10 +11,10 @@ tag: security wifi kali
 项目的要求是这样的：
 
 > Modify an open-source wireless access point to conduct a man-in-the-middle attack against users who connect through it.
-
-> Part 1: Disable other available wireless access points temporally;
-> Part 2: Locate the target WiFi user among multiple users;
-> Part 3: Whenever a binary is downloaded by the victim via HTTP, modify it on the fly to insert a Trojan horse.
+>
+> - Part 1: Disable other available wireless access points temporally;
+> - Part 2: Locate the target WiFi user among multiple users;
+> - Part 3: Whenever a binary is downloaded by the victim via HTTP, modify it on the fly to insert a Trojan horse.
 
 项目要求其实给了很多提示。最终的要求是要完成中间人攻击，在目标用户下载可执行文件的时候向其中植入一个木马。但使用的方法是在 WiFi 热点（Access Point，以下简称 AP）上做手脚。这意味题目要求我们不能用 ARP 欺骗这样的手段，而是要对 AP 直接发起攻击。
 
