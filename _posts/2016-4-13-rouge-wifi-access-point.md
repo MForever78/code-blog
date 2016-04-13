@@ -103,13 +103,13 @@ DoS 的一般思路是利用攻守双方的资源消耗不对等，攻方使用�
 iptables -t nat -A PREROUTING -s 192.168.1.0/24 -p tcp --dport 80 -j REDIRECT --to-ports 8080
 ```
 
+把所有 AP 子网的通往 80 端口的 TCP 包都转发到我们自己的 8080 端口上。
+
 为了让目标的基于其他端口的应用还能正常工作，我们在 `POSTROUTING` 链加入以下规则：
 
 ```
 iptables -t nat -A POSTROUTING -s 192.168.1.0/24 -j MASQUERADE
 ```
-
-把所有 AP 子网的通往 80 端口的 TCP 包都转发到我们自己的 8080 端口上。
 
 然后启动一个 nginx 服务器监听 8080 端口。当检查到以 `exe` 结尾的 URL，我们就转发到自己的 server 上，其他的请求仅作为透明代理正常转发。
 
