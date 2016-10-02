@@ -43,12 +43,12 @@ Robin Hood 有两种删除方式，按性质可以分为正常删除和懒惰删
 
 ```go
 func hash(key string) (hashValue uint) {
-	hashValue = 5381
+    hashValue = 5381
 
-	for _, c := range key {
-		hashValue = ((hashValue << 5) + hashValue) + uint(c)
-	}
-	return hashValue
+        for _, c := range key {
+            hashValue = ((hashValue << 5) + hashValue) + uint(c)
+        }
+    return hashValue
 }
 ```
 
@@ -56,30 +56,30 @@ func hash(key string) (hashValue uint) {
 
 1. 先统一分配内存，而不是动态添加。
 2. 每个 bucket 不但记录 key 和 value，同时为了计算 DIB，还需要记录 hash value。我们令 hash value 的未初始化值为 0，取值为 $(0, tableSize]$。这样只要看到 hash value 为 0 的 bucket，我们就可以确定它是未被占用的。具体做法是将 0 号 bucket 废除，下标从 1 开始计算。同时 `hashValue = rawHashValue % tableSize + 1`。
-3. 线性探测时，有可能出现探测的位置越界的情况，所以我们从一开始就要假设这是一个循环数组。在位置加减时，要特殊处理。
+        3. 线性探测时，有可能出现探测的位置越界的情况，所以我们从一开始就要假设这是一个循环数组。在位置加减时，要特殊处理。
 
-代码保存在 [Github](https://github.com/MForever78/robinhood) 上。
+        代码保存在 [Github](https://github.com/MForever78/robinhood) 上。
 
 ## 结果
 
-在 Ubuntu 16.04，Golang 1.6 版本下测试结果：
+        在 Ubuntu 16.04，Golang 1.6 版本下测试结果：
 
-```bash
-➜  robinhood /usr/bin/time ./robinhood > out
-7.05user 2.97system 0:09.03elapsed 110%CPU (0avgtext+0avgdata 48404maxresident)k
-0inputs+19272outputs (0major+9894minor)pagefaults 0swaps
-➜  robinhood /usr/bin/time ./linear > out 
-11.54user 3.10system 0:13.25elapsed 110%CPU (0avgtext+0avgdata 48624maxresident)k
-0inputs+19272outputs (0major+9906minor)pagefaults 0swaps
-➜  robinhood /usr/bin/time ./stdmap > out 
-3.75user 2.67system 0:05.75elapsed 111%CPU (0avgtext+0avgdata 59816maxresident)k
-0inputs+19272outputs (0major+10906minor)pagefaults 0swaps
-```
+        ```bash
+        ➜  robinhood /usr/bin/time ./robinhood > out
+        7.05user 2.97system 0:09.03elapsed 110%CPU (0avgtext+0avgdata 48404maxresident)k
+        0inputs+19272outputs (0major+9894minor)pagefaults 0swaps
+        ➜  robinhood /usr/bin/time ./linear > out
+        11.54user 3.10system 0:13.25elapsed 110%CPU (0avgtext+0avgdata 48624maxresident)k
+        0inputs+19272outputs (0major+9906minor)pagefaults 0swaps
+        ➜  robinhood /usr/bin/time ./stdmap > out
+        3.75user 2.67system 0:05.75elapsed 111%CPU (0avgtext+0avgdata 59816maxresident)k
+        0inputs+19272outputs (0major+10906minor)pagefaults 0swaps
+        ```
 
 其中 `linear` 是线性探测的方法。而 `stdmap` 是使用 Go 标准库中的 map，因为 hash 函数不同，而且 Go 标准库的实现使用了大量 unsafe pointer 以增加效率，不可直接比较，所以仅作为参考。顺带一提，Golang 的 map 在指定大小时，指定的是 bucket 数，而它的一个 bucket 中是可以放 8 个 key, value pair 的，在确定负载时要注意\[3]。
 
 从结果来看，Robin Hood Hashmap 确实比 Linear probing 效率要高了 30% 左右。但是在有标准库的情况下，除了 interesting 之外，还有什么用呢 ╮(￣▽￣)╭
 
-\[1]: [Robin Hood Hashing should be your default Hash Table implementation](http://www.sebastiansylvan.com/post/robin-hood-hashing-should-be-your-default-hash-table-implementation/)
-\[2]: [Robin Hood hashing: backward shift deletion](http://codecapsule.com/2013/11/17/robin-hood-hashing-backward-shift-deletion/)
-\[3]: [Source file src/runtime/hashmap.go](Source file src/runtime/hashmap.go)
+1. [Robin Hood Hashing should be your default Hash Table implementation](http://www.sebastiansylvan.com/post/robin-hood-hashing-should-be-your-default-hash-table-implementation/)
+2. [Robin Hood hashing: backward shift deletion](http://codecapsule.com/2013/11/17/robin-hood-hashing-backward-shift-deletion/)
+3. [Source file src/runtime/hashmap.go](Source file src/runtime/hashmap.go)
