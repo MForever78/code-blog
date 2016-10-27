@@ -55,7 +55,7 @@ func hash(key string) (hashValue uint) {
 在实现过程中，需要特别注意以下几个点：
 
 1.  先统一分配内存，而不是动态添加。
-2.  每个 bucket 不但记录 key 和 value，同时为了计算 DIB，还需要记录 hash value。我们令 hash value 的未初始化值为 0，取值为 $(0, tableSize]$。这样只要看到 hash value 为 0 的 bucket，我们就可以确定它是未被占用的。具体做法是将 0 号 bucket 废除，下标从 1 开始计算。同时 `hashValue = rawHashValue % tableSize + 1`。
+2.  每个 bucket 不但记录 key 和 value，同时为了计算 DIB，还需要记录 hash value。我们令 hash value 的未初始化值为 0，取值为 $$(0, tableSize]$$。这样只要看到 hash value 为 0 的 bucket，我们就可以确定它是未被占用的。具体做法是将 0 号 bucket 废除，下标从 1 开始计算。同时 `hashValue = rawHashValue % tableSize + 1`。
 3.  线性探测时，有可能出现探测的位置越界的情况，所以我们从一开始就要假设这是一个循环数组。在位置加减时，要特殊处理。
 
 代码保存在 [Github](https://github.com/MForever78/robinhood) 上。
@@ -68,9 +68,11 @@ func hash(key string) (hashValue uint) {
 ➜  robinhood /usr/bin/time ./robinhood > out
 7.05user 2.97system 0:09.03elapsed 110%CPU (0avgtext+0avgdata 48404maxresident)k
 0inputs+19272outputs (0major+9894minor)pagefaults 0swaps
+
 ➜  robinhood /usr/bin/time ./linear > out
 11.54user 3.10system 0:13.25elapsed 110%CPU (0avgtext+0avgdata 48624maxresident)k
 0inputs+19272outputs (0major+9906minor)pagefaults 0swaps
+
 ➜  robinhood /usr/bin/time ./stdmap > out
 3.75user 2.67system 0:05.75elapsed 111%CPU (0avgtext+0avgdata 59816maxresident)k
 0inputs+19272outputs (0major+10906minor)pagefaults 0swaps
