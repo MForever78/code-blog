@@ -567,6 +567,7 @@ a.pagination-item:hover {
 /* Below is added by MForever78 */
 
 /* License */
+
 .license {
     font-size: .9rem;
     margin-bottom: 1rem;
@@ -576,4 +577,8 @@ a.pagination-item:hover {
     width: 2rem;
     height: auto;
     margin: 0 .5rem 0 0;
+}
+.license-sidebar .license-list {
+    color: #fff; 
+    font-size: 1.5rem;
 }
