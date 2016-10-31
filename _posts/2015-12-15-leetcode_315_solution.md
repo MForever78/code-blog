@@ -6,6 +6,8 @@ category: Algorithm
 tag: algorithm leetcode
 ---
 
+一道由逆序对引出的题，考查了对经典的归并排序算法的理解。
+
 ## 题目描述
 
 ### Count of Smaller Numbers After Self
