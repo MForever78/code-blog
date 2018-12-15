@@ -8,7 +8,7 @@ tag: secure salt web password
 
 > 本篇经与 @Gnnng, @pollow 讨论、查资料，在 MSTC 群中请教讨论总结而成。
 
-![hash_salt](//o35qhjvld.qnssl.com/hash_salt.jpg)
+![hash_salt](//code.mforever78.com/images/hash_salt.jpg)
 
 我们都知道，数据库里不能储存用户密码的明文，那怎样存储才是最科学的呢？
 

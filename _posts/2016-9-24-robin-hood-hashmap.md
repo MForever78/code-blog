@@ -14,7 +14,7 @@ tag: algorithm datastructure hash hashmap robinhood
 
 Robin Hood 的定址方式基于线性探测，但有一点不同，即它不是将新元素插到一个未被占用的地方，而是在线性探测的过程中，放在第一个 DIB 比它小的位置上去，而把原位置上的元素当做新元素继续依此规则向后查找，直到找到空位置为止。举个例子：
 
-![RobinHood](https://o35qhjvld.qnssl.com/robinhood.png)
+![RobinHood](https://code.mforever78.com/images/robinhood.png)
 
 假设有如图的哈希函数，把六个字母按从左至右的顺序依次加到哈希表中。在加入前五个字母后，哈希表如上第二图所示。其中元素右下角的数字表示计算出的 DIB 值。当加入元素 x 时，有如下过程：
 

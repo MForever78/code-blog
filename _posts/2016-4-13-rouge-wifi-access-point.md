@@ -108,17 +108,17 @@ DoS 的一般思路是利用攻守双方的资源消耗不对等，攻方使用�
 ### Demo
 
 1. 用 `airmon-ng start <wireless card>` 开启指定无线网卡的监听模式
-    ![开启监听模式](https://o35qhjvld.qnssl.com/rouge-wifi-monitor.png)
+    ![开启监听模式](https://code.mforever78.com/images/rouge-wifi-monitor.png)
 2. 用 `airodump-ng <monitor interface>` 扫描并记录周围 AP 的 MAC 地址
-    ![扫描 AP](https://o35qhjvld.qnssl.com/rouge-wifi-scan.png)
+    ![扫描 AP](https://code.mforever78.com/images/rouge-wifi-scan.png)
 3. 用 `mdk3 <monitor interface> d -b black` 对黑名单中 MAC 地址的 AP 进行 deauthentication & deassociation 攻击
-    ![deauth 攻击](https://o35qhjvld.qnssl.com/rouge-wifi-deauth.png)
+    ![deauth 攻击](https://code.mforever78.com/images/rouge-wifi-deauth.png)
 4. 用 `mdk3 <monitor interface> a -i <MAC> -m` 进行 authentication DoS 攻击
-    ![DoS 攻击](https://o35qhjvld.qnssl.com/rouge-wifi-dos.png)
+    ![DoS 攻击](https://code.mforever78.com/images/rouge-wifi-dos.png)
 
 当做完以上几个步骤以后，目标 AP 受到了我们的 Deauthentication & Deassociation 和 DoS 双重攻击，客户端马上看到了这样的结果：
 
-![客户端掉线](https://o35qhjvld.qnssl.com/rouge-wifi-kicked.png)
+![客户端掉线](https://code.mforever78.com/images/rouge-wifi-kicked.png)
 
 在信号瞬间变成空条以后，接着就会自动掉线了。
 
@@ -128,7 +128,7 @@ DoS 的一般思路是利用攻守双方的资源消耗不对等，攻方使用�
 
 一个典型的会场 AP 布置如下图所示：
 
-![AP 布置](https://o35qhjvld.qnssl.com/rouge-wifi-channels.png)
+![AP 布置](https://code.mforever78.com/images/rouge-wifi-channels.png)
 
 为了保证用户在这些 AP 间无缝切换，很显然，它们的 SSID 和密码都是相同的。
 
@@ -146,11 +146,11 @@ DoS 的一般思路是利用攻守双方的资源消耗不对等，攻方使用�
 
 这个时候我们终于要祭出硬件设备了。一般路由器上自带的天线都是全向天线，也就是说，它会以自身为圆心向周围发射信号。而市面上还有另一种天线，不太常见，但也算不得稀奇之物，叫做定向天线。故名思义，它可以仅仅加强某个很小角度的扇形区域内的信号强度。利用定向天线，我们想了这样的方法来确定目标。
 
-![定向天线](https://o35qhjvld.qnssl.com/rouge-wifi-directional-antenna.jpg)
+![定向天线](https://code.mforever78.com/images/rouge-wifi-directional-antenna.jpg)
 
 在以目标为圆心，适宜半径的圆上放置定向天线，对准目标。这个时候把连接在 AP 上的所有客户端的信号强度（RSSI）记录下来。然后在圆上移动定向天线，保持天线对准目标，再次测量所有客户端的信号强度。大约把 12 点，3 点，6 点，9 点这四个方向上的数据记录下来就可以了。当然数据越多，结果越精确。
 
-![信号强度算法示意图](https://o35qhjvld.qnssl.com/rouge-wifi-location-algorithm.png)
+![信号强度算法示意图](https://code.mforever78.com/images/rouge-wifi-location-algorithm.png)
 
 拿到数据以后，计算每一个客户端信号强度的方差，找出方差比较小的几个，然后比较平均信号强度，信号最强的那一个就是我们要找的目标。这个原理也很好理解，由于我们每次都在相同的距离将定向天线对准目标，那么几次测量过程目标的信号强度变化量应该是不大的，而其他的大部分客户端强度则有时被放大，有时减弱，波动明显。而另一小部分客户端，由于距离我们的天线很远，表现出每次测量的信号强度都是很小的，因此波动也很小。所以我们在找出信号强度方差最小的几个客户端里，取信号强度较强的那一个视为目标。
 

@@ -6,7 +6,7 @@ category: algorithm
 tag: leetcode algorithm dynamic_programming
 ---
 
-![crazy_professor](//o35qhjvld.qnssl.com/crazy_professor.jpg)
+![crazy_professor](//code.mforever78.com/images/crazy_professor.jpg)
 
 Leetcode 碰到的一个成系列的动态规划问题，由简单到复杂，很有意思。
 

@@ -10,7 +10,7 @@ tag: javascript this translation
 
 > 按：本文原文来自 Javascript.isSexy 这个网站。这篇文章和文中提到的另一篇文章解决了我一直以来对 `this` 和 `apply, call, bind` 这三个方法的困惑。我看过很多国内相关的技术文章，没有一篇能让我彻底理解这些概念的。因此我决定把它译过来，不要让更多的初学者像我一样在这个问题上纠结太长时间。
 
-![](//o35qhjvld.qnssl.com/learn-javascript-this.jpg)
+![](//code.mforever78.com/images/learn-javascript-this.jpg)
 
 > （在学习 this 的同时也了解那些 this 被误解和误用的场景）
 

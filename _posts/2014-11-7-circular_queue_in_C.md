@@ -6,7 +6,7 @@ category: Notes
 tag: C datastructure queue
 ---
 
-![Circular-array](http://o35qhjvld.qnssl.com/circular-array.png "Circular Array")
+![Circular-array](http://code.mforever78.com/images/circular-array.png "Circular Array")
 
 前两天写了这学期 Foundamentals of Data Structures 课里最后一个 Project 的程序。题目的难点本来在于思路，可是老师上课已经提醒了很多，于是编程上并没有太大困难。布置下来以后我花了两个小时的时间，把整个程序写完，通过了 PAT 上的测试，把程序交给小组的测试员，又和文档员说了一下这个题的思路，觉得自己已经 Mission Acomplish 了。
 
